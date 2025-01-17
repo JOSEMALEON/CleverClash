@@ -8,19 +8,32 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_cleverclash"
         android:supportsRtl="true"
         android:theme="@style/Theme.CleverClash"
         tools:targetApi="31">
+
+
+        <!-- Actividad de inicio de sesión (pantalla inicial) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Actividad principal -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
+        <activity android:name=".RegisterActivity" />
+
+
+
     </application>
 
 </manifest>

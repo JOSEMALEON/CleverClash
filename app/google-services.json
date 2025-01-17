@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "358022024759",
+    "project_id": "cleverclash-3bc18",
+    "storage_bucket": "cleverclash-3bc18.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358022024759:android:51919197a75f3a7c9e39b2",
+        "android_client_info": {
+          "package_name": "com.example.clever_clash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRzKBSRMLZbcQqzXMRUv8AJ5OqNXqv1vU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
