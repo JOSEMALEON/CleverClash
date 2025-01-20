@@ -13,7 +13,8 @@
         android:layout_height="350dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:src="@drawable/logo_cleverclash" />
+        android:src="@drawable/logo_cleverclash"
+        />
 
     <!-- Campo de texto para correo electrónico -->
     <EditText
