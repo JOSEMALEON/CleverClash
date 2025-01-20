@@ -1,19 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/background_2">
 
-    <TextView
+    <!-- Barra superior (Toolbar) -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:titleTextColor="@android:color/white"
+        android:title="Nombre de Usuario" />
+
+    <!-- Logo en el centro de la pantalla -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/logo_cleverclash"
+        android:contentDescription="Logo de la aplicación" />
+
+    <!-- Botón de Nueva Partida -->
+    <Button
+        android:id="@+id/newGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/logoImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Nueva Partida"
+        android:backgroundTint="@color/Rosita1"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Botón para funcionalidad futura -->
+    <Button
+        android:id="@+id/dataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newGameButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Opciones Futuras"
+        android:backgroundTint="@color/Rosita1"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+</RelativeLayout>

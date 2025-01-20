@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,24 +24,17 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
 
-    private FirebaseAuthManager authManager;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        try {
-            authManager = new FirebaseAuthManager();
-        } catch (Exception e) {
-            Log.e("LoginActivity", "Error inicializando FirebaseAuthManager", e);
-            Toast.makeText(this, "Error al inicializar Firebase", Toast.LENGTH_SHORT).show();
-        }
-
+        // Inicializar FirebaseAuth
         FirebaseApp.initializeApp(this);
-        setContentView(R.layout.activity_login);
+        auth = FirebaseAuth.getInstance();
 
-        // Inicializar FirebaseAuthManager
-        authManager = new FirebaseAuthManager();
+        setContentView(R.layout.activity_login);
 
         // Obtener referencias a los elementos del diseño
         emailEditText = findViewById(R.id.emailEditText);
@@ -76,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Llamar al método de autenticación
-        authManager.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -87,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Redirigir al usuario a la siguiente pantalla (MainActivity u otra)
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
-                            finish();
+                            finish(); // Evitar que el usuario regrese al login con el botón de atrás
                         } else {
                             // Error en el inicio de sesión
                             Log.e("LoginActivity", "Error de inicio de sesión", task.getException());
