@@ -29,10 +29,43 @@
             </intent-filter>
         </activity>
 
+        <!-- Actividad de la Ruleta -->
+        <activity android:name=".ActivityRuleta"
+            android:label="Ruleta" />
 
+        <!-- Actividad para las categorías -->
+        <activity android:name=".CategoryActivity"
+            android:label="Categoría"
+            android:parentActivityName=".ActivityRuleta">
+        </activity>
+
+        <!-- Actividades para las categorías -->
+        <activity android:name=".CienciaActivity"
+            android:label="Ciencia"
+            android:parentActivityName=".ActivityRuleta" />
+
+        <activity android:name=".HistoriaActivity"
+            android:label="Historia"
+            android:parentActivityName=".ActivityRuleta" />
+
+        <activity android:name=".SportsActivity"
+            android:label="Deportes"
+            android:parentActivityName=".ActivityRuleta" />
+
+        <activity android:name=".ArtActivity"
+            android:label="Arte"
+            android:parentActivityName=".ActivityRuleta" />
+
+        <activity android:name=".EntretenimientoActivity"
+            android:label="Entretenimiento"
+            android:parentActivityName=".ActivityRuleta" />
+
+        <activity android:name=".GeografiaActivity"
+            android:label="Geografía"
+            android:parentActivityName=".ActivityRuleta" />
+
+        <!-- Actividad de registro -->
         <activity android:name=".RegisterActivity" />
-
-
 
     </application>
 

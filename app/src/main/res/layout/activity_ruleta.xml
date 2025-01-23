@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Imagen de la ruleta -->
+    <ImageView
+        android:id="@+id/ruletaImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:contentDescription="Ruleta"
+        android:scaleType="centerInside" />
+
+
+    <!-- Botón para girar la ruleta -->
+    <Button
+        android:id="@+id/btnGirar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Girar"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"/>
+
+</RelativeLayout>
