@@ -5,4 +5,11 @@
     <color name="purple_500">#6200EE</color>
     <color name="teal_700">#018786</color>
     <color name="Rosita1">#f37b61</color>
+    <color name="naranja">#FF9800</color>
+    <color name="amarillo">#FFD700</color>
+    <color name="rojo">#FF4500</color>
+    <color name="morado">#800080</color>
+    <color name="rosa">#FF69B4</color>
+    <color name="verde">#32CD32</color>
+    <color name="azul">#1E90FF</color>
 </resources>
