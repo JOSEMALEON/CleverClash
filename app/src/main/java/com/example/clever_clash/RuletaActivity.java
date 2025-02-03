@@ -16,7 +16,7 @@ public class RuletaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ruleta);
 
-        ruletaImageView = findViewById(R.id.ruletaImageView);
+        ruletaImageView = findViewById(R.id.ruletaImage);
         Button btnGirar = findViewById(R.id.btnGirar);
 
         // Inicializar la ruleta
