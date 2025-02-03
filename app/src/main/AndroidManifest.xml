@@ -67,6 +67,9 @@
         <!-- Actividad de registro -->
         <activity android:name=".RegisterActivity" />
 
+        <activity android:name=".RuletaActivity" />
+
+
     </application>
 
 </manifest>

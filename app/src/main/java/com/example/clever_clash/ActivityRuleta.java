@@ -21,7 +21,6 @@ public class ActivityRuleta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ruleta);
 
-        ruletaImage = findViewById(R.id.ruletaImage);
         btnGirar = findViewById(R.id.btnGirar);
 
         btnGirar.setOnClickListener(new View.OnClickListener() {

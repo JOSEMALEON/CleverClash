@@ -6,12 +6,11 @@
     <!-- Imagen de la ruleta -->
     <ImageView
         android:id="@+id/ruletaImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_centerInParent="true"
         android:contentDescription="Ruleta"
         android:scaleType="centerInside" />
-
 
     <!-- Botón para girar la ruleta -->
     <Button

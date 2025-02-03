@@ -1,5 +1,6 @@
 package com.example.clever_clash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,9 +62,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Lógica para manejar datos
                 Toast.makeText(MainActivity.this, "Función de datos no implementada", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        Button btnIrARuleta = findViewById(R.id.btnRuleta);
+        btnIrARuleta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RuletaActivity.class);
+                startActivity(intent);
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
