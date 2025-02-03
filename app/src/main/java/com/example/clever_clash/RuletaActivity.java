@@ -20,7 +20,7 @@ public class RuletaActivity extends AppCompatActivity {
         Button btnGirar = findViewById(R.id.btnGirar);
 
         // Inicializar la ruleta
-        ruletaDrawable = new RuletaDrawable();
+        ruletaDrawable = new RuletaDrawable(this);
         ruletaImageView.setImageDrawable(ruletaDrawable);
 
         // Configurar el botón para girar la ruleta

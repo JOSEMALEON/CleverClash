@@ -27,7 +27,7 @@ public class ActivityRuleta extends AppCompatActivity {
         ImageView ruletaImage = findViewById(R.id.ruletaImage);
         btnGirar = findViewById(R.id.btnGirar);
 
-        ruletaDrawable = new RuletaDrawable();
+        ruletaDrawable = new RuletaDrawable(this);
         ruletaImage.setImageDrawable(ruletaDrawable);
 
         btnGirar.setOnClickListener(v -> {
@@ -51,8 +51,8 @@ public class ActivityRuleta extends AppCompatActivity {
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 ruletaDrawable,
                 "rotation",
-                0f,
-                rotationAmount
+                ruletaDrawable.getRotation(),
+                ruletaDrawable.getRotation() + rotationAmount
         );
 
         animator.setDuration(4000);
@@ -65,12 +65,9 @@ public class ActivityRuleta extends AppCompatActivity {
                 btnGirar.setEnabled(true);
 
                 String selectedCategory = getCategoryFromSector(sectorSeleccionado);
+                Toast.makeText(ActivityRuleta.this, "¡Ha tocado el sector: " + selectedCategory + "!", Toast.LENGTH_SHORT).show();
 
-                if (selectedCategory.equals("Corona a elección")) {
-                    Toast.makeText(ActivityRuleta.this,
-                            "¡Corona a elección!",
-                            Toast.LENGTH_SHORT).show();
-                } else {
+                if (!selectedCategory.equals("Corona a elección")) {
                     Intent intent = new Intent(ActivityRuleta.this, CategoryActivity.class);
                     intent.putExtra("CATEGORY", selectedCategory);
                     startActivity(intent);

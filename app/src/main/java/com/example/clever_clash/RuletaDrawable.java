@@ -1,6 +1,7 @@
 package com.example.clever_clash;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Toast;
 import java.util.Random;
 
 public class RuletaDrawable extends Drawable {
@@ -24,7 +26,10 @@ public class RuletaDrawable extends Drawable {
             Color.parseColor("#9C27B0")  // Corona a elección (Morado)
     };
 
-    public RuletaDrawable() {
+    private Context context;
+
+    public RuletaDrawable(Context context) {
+        this.context = context;
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
@@ -91,7 +96,36 @@ public class RuletaDrawable extends Drawable {
             setRotation((float) animation.getAnimatedValue());
         });
 
+        animator.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                mostrarResultado((currentRotation + giroFinal) % 360); // Obtener ángulo final normalizado
+            }
+        });
+
         animator.start();
+    }
+
+    private void mostrarResultado(float anguloFinal) {
+        // Ajustar para que el ángulo 0° esté en la parte superior
+        anguloFinal = (anguloFinal + 360 - (360 / colors.length) / 2) % 360;
+
+        // Determinar el sector
+        int sector = (int) (anguloFinal / (360 / colors.length));
+
+        // Mensaje asociado a cada sector
+        String[] categorias = {
+                "Ciencia (Verde)",
+                "Historia (Amarillo)",
+                "Deporte (Naranja)",
+                "Arte (Rojo)",
+                "Entretenimiento (Rosa)",
+                "Geografía (Azul)",
+                "Corona a elección (Morado)"
+        };
+
+        // Mostrar mensaje
+        Toast.makeText(context, "¡Ha tocado el sector: " + categorias[sector] + "!", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -110,4 +144,10 @@ public class RuletaDrawable extends Drawable {
     public int getOpacity() {
         return android.graphics.PixelFormat.TRANSLUCENT;
     }
+
+    public float getRotation() {
+        return currentRotation;
+    }
+
+
 }
