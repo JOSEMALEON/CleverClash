@@ -1,4 +1,4 @@
-package Cliente;
+package com.example.clever_clash.Cliente;
 
 public class ClienteMain {
     public static void main(String[] args) {

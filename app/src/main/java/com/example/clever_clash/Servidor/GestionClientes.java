@@ -1,4 +1,4 @@
-package Servidor;
+package com.example.clever_clash.Servidor;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

@@ -1,4 +1,4 @@
-package Cliente;
+package com.example.clever_clash.Cliente;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -22,7 +22,7 @@ public class Cliente extends Thread {
     public void run() {
         try {
             // Conexión al servidor
-            Socket socket = new Socket(InetAddress.getLocalHost(), 5555);
+            Socket socket = new Socket("10.200.116.249", 5559);
             System.out.println("[" + nombre + "] Conectado al servidor en puerto local: " + socket.getLocalPort());
 
             DataInputStream in = new DataInputStream(socket.getInputStream());

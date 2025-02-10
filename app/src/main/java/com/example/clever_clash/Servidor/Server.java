@@ -1,4 +1,4 @@
-package Servidor;
+package com.example.clever_clash.Servidor;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,9 +24,9 @@ public class Server {
         nombresJugadores = "";
         socketsClientes = new ArrayList<>();
 
-        System.out.println("Servidor de Clever Clash iniciado en puerto 5555...");
+        System.out.println("Servidor de Clever Clash iniciado en puerto 5555... Esperando jugadores");
 
-        try (ServerSocket serverSocket = new ServerSocket(5555)) {
+        try (ServerSocket serverSocket = new ServerSocket(5559)) {
             while (socketsClientes.size() < NUM_MAX_JUGADORES) {
                 Socket socketCliente = serverSocket.accept();
                 System.out.println("¡Nuevo jugador conectado! " + socketCliente.getInetAddress());
