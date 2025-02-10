@@ -46,7 +46,8 @@ public class ActivityRuleta extends AppCompatActivity {
 
         // Calculamos el ángulo final para que el sector quede bajo el indicador
         float targetAngle = (sectorSeleccionado * sectorAngle) + (sectorAngle / 2);
-        float rotationAmount = 1080 + targetAngle + (new Random().nextFloat() * 720);
+        float rotationAmount = 1080 + targetAngle + (new Random().nextFloat() * sectorAngle);
+
 
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 ruletaDrawable,

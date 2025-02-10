@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 import java.util.Random;
@@ -16,6 +17,7 @@ public class RuletaDrawable extends Drawable {
     private Paint paint;
     private Paint indicatorPaint;
     private float currentRotation = 0;
+    private static final int SECTOR_COUNT = 7;  // Cambia 7 según el número real de sectores
     private int[] colors = {
             Color.parseColor("#4CAF50"), // Ciencia (Verde)
             Color.parseColor("#FFEB3B"), // Historia (Amarillo)
@@ -107,11 +109,21 @@ public class RuletaDrawable extends Drawable {
     }
 
     private void mostrarResultado(float anguloFinal) {
-        // Ajustar para que el ángulo 0° esté en la parte superior
-        anguloFinal = (anguloFinal + 360 - (360 / colors.length) / 2) % 360;
+        // Ajustar el ángulo para que 0° esté en la parte superior
+        anguloFinal = (anguloFinal + 360 - 90) % 360;
 
-        // Determinar el sector
-        int sector = (int) (anguloFinal / (360 / colors.length));
+// Determinar el sector correcto
+        int sector = ((int) ((anguloFinal + (360f / SECTOR_COUNT) / 2) / (360f / SECTOR_COUNT))) % SECTOR_COUNT;
+
+// Lista de colores en el orden correcto (sentido horario desde la parte superior)
+        String[] colores = {"Rojo", "Rosa", "Azul", "Morado", "Verde", "Amarillo", "Naranja", "Naranja"};
+
+// Corregir posible desfase si los sectores están girados en la lista
+        String colorSeleccionado = colores[(sector + SECTOR_COUNT - 1) % SECTOR_COUNT];
+
+// Mostrar resultado en Logcat
+        Log.d("Ruleta", "Ángulo final: " + anguloFinal + " | Sector: " + sector + " | Color detectado: " + colorSeleccionado);
+
 
         // Mensaje asociado a cada sector
         String[] categorias = {
@@ -123,6 +135,8 @@ public class RuletaDrawable extends Drawable {
                 "Geografía (Azul)",
                 "Corona a elección (Morado)"
         };
+
+        Log.d("Ruleta", "Ángulo final: " + anguloFinal + " | Sector: " + sector);
 
         // Mostrar mensaje
         Toast.makeText(context, "¡Ha tocado el sector: " + categorias[sector] + "!", Toast.LENGTH_LONG).show();
