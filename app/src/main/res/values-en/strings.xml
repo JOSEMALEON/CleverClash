@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Clever Clash</string>
+    <string name="new_game">New Game</string>
+    <string name="future_options">Future Options</string>
+    <string name="go_to_roulette">Go to Roulette</string>
+    <string name="language_spanish">Spanish</string>
+    <string name="language_english">English</string>
+</resources>

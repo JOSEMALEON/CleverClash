@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         android:background="@color/white"
         android:elevation="4dp"
         android:titleTextColor="@android:color/white"
-        android:title="Nombre de Usuario" />
+        android:title="@string/app_name" />
 
     <!-- Logo en el centro de la pantalla -->
     <ImageView
@@ -24,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
         android:src="@drawable/logo_cleverclash"
-        android:contentDescription="Logo de la aplicación" />
+        android:contentDescription="@string/app_name" />
 
     <!-- Botón de Nueva Partida -->
     <Button
@@ -34,7 +33,7 @@
         android:layout_below="@id/logoImageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="Nueva Partida"
+        android:text="@string/new_game"
         android:backgroundTint="@color/Rosita1"
         android:textColor="@android:color/white"
         android:padding="12dp" />
@@ -47,16 +46,29 @@
         android:layout_below="@id/newGameButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Opciones Futuras"
+        android:text="@string/future_options"
         android:backgroundTint="@color/Rosita1"
         android:textColor="@android:color/white"
         android:padding="12dp" />
 
+    <!-- Botón para ir a la Ruleta -->
     <Button
         android:id="@+id/btnRuleta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ir a la Ruleta"
-        android:layout_centerInParent="true"/>
+        android:text="@string/go_to_roulette"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/Rosita1"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
 
+    <!-- Switch para cambiar de idioma -->
+    <Switch
+        android:id="@+id/switchLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/language_spanish"
+        android:layout_below="@id/dataButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
 </RelativeLayout>

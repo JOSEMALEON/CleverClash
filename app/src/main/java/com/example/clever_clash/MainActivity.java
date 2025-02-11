@@ -1,12 +1,14 @@
 package com.example.clever_clash;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,16 +16,24 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private Toolbar toolbar;
     private EditText userNameEditText;
+    private Switch switchLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Cargar el idioma guardado antes de aplicar setContentView()
+        loadLanguage();
+
+
+
 
         // Configura el diseño principal
         setContentView(R.layout.activity_main);
@@ -38,48 +48,87 @@ public class MainActivity extends AppCompatActivity {
 
         // Obtener el nombre de usuario
         FirebaseUser user = auth.getCurrentUser();
-        String userName = user != null ? user.getDisplayName() : "Usuario";
-
-        // Establecer el nombre del usuario en el Toolbar
+        String userName = (user != null) ? user.getDisplayName() : "Usuario";
         toolbar.setTitle(userName);
 
-        // Obtén referencias a los botones
+        // Botones
         Button newGameButton = findViewById(R.id.newGameButton);
         Button dataButton = findViewById(R.id.dataButton);
-
-        // Configura el botón "Nueva Partida"
-        newGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lógica para iniciar una nueva partida
-                Toast.makeText(MainActivity.this, "Nueva partida iniciada", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Configura el botón "Datos"
-        dataButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lógica para manejar datos
-                Toast.makeText(MainActivity.this, "Función de datos no implementada", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
         Button btnIrARuleta = findViewById(R.id.btnRuleta);
-        btnIrARuleta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RuletaActivity.class);
-                startActivity(intent);
+
+        // ACTUALIZA LOS TEXTOS PARA REFLEJAR EL NUEVO IDIOMA
+        newGameButton.setText(getString(R.string.new_game));
+        dataButton.setText(getString(R.string.future_options));
+        btnIrARuleta.setText("Ir a la Ruleta"); // Si tienes traducción, usa getString()
+
+        newGameButton.setOnClickListener(v ->
+                Toast.makeText(MainActivity.this, "Nueva partida iniciada", Toast.LENGTH_SHORT).show()
+        );
+
+        dataButton.setOnClickListener(v ->
+                Toast.makeText(MainActivity.this, "Función de datos no implementada", Toast.LENGTH_SHORT).show()
+        );
+
+        btnIrARuleta.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RuletaActivity.class);
+            startActivity(intent);
+        });
+
+        // Switch para cambio de idioma
+        switchLanguage = findViewById(R.id.switchLanguage);
+
+        // Cargar estado guardado del switch
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        String language = prefs.getString("Language", "es"); // Default: Español
+        switchLanguage.setChecked(language.equals("en"));
+        switchLanguage.setText(language.equals("en") ? getString(R.string.language_english) : getString(R.string.language_spanish));
+
+        switchLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                switchLanguage.setText("English");
+                changeLanguage("en");
+            } else {
+                switchLanguage.setText("Español");
+                changeLanguage("es");
             }
         });
+    }
+
+    private void changeLanguage(String languageCode) {
+        // Guardar idioma en SharedPreferences
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("Language", languageCode);
+        editor.apply();
+
+        // Aplicar idioma
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        // REINICIAR ACTIVIDAD COMPLETAMENTE
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+
+
+    private void loadLanguage() {
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        String language = prefs.getString("Language", "es"); // Español por defecto
+
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Infla el menú en la barra de herramientas
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     }
@@ -87,44 +136,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.edit_user_name) {
-            // Llamar al método para mostrar el cuadro de diálogo
             showEditUserNameDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
     private void showEditUserNameDialog() {
-        // Crear un cuadro de texto para que el usuario ingrese el nuevo nombre
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
             userNameEditText = new EditText(MainActivity.this);
-            userNameEditText.setText(user.getDisplayName()); // Establecer el nombre actual
+            userNameEditText.setText(user.getDisplayName());
 
-            // Configurar un cuadro de diálogo para editar el nombre
             new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
                     .setTitle("Editar Nombre de Usuario")
                     .setView(userNameEditText)
                     .setPositiveButton("Guardar", (dialog, which) -> {
                         String newUserName = userNameEditText.getText().toString().trim();
                         if (!newUserName.isEmpty()) {
-                            // Actualizar el nombre del usuario en Firebase
                             user.updateProfile(new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(newUserName)
-                                            .build())
-                                    .addOnCompleteListener(task -> {
-                                        if (task.isSuccessful()) {
-                                            // Nombre actualizado con éxito
-                                            toolbar.setTitle(newUserName); // Actualizar el nombre en la barra
-                                            Toast.makeText(MainActivity.this, "Nombre de usuario actualizado", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            // Error al actualizar el nombre
-                                            Toast.makeText(MainActivity.this, "Error al actualizar el nombre", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                                    .setDisplayName(newUserName)
+                                    .build()).addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    toolbar.setTitle(newUserName);
+                                    Toast.makeText(MainActivity.this, "Nombre de usuario actualizado", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Error al actualizar el nombre", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         } else {
                             Toast.makeText(MainActivity.this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show();
                         }

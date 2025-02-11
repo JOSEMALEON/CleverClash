@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Clever-Clash</string>
+    <string name="app_name">Clever Clash</string>
+    <string name="new_game">Nueva Partida</string>
+    <string name="future_options">Opciones Futuras</string>
+    <string name="go_to_roulette">Ir a la Ruleta</string>
+    <string name="language_spanish">Español</string>
+    <string name="language_english">English</string>
 </resources>
