@@ -24,7 +24,7 @@ public class Server {
         nombresJugadores = "";
         socketsClientes = new ArrayList<>();
 
-        System.out.println("Servidor de Clever Clash iniciado en puerto 5555... Esperando jugadores");
+        System.out.println("Servidor de Clever Clash iniciado en puerto 5559... Esperando jugadores");
 
         try (ServerSocket serverSocket = new ServerSocket(5559)) {
             while (socketsClientes.size() < NUM_MAX_JUGADORES) {
