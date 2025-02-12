@@ -22,7 +22,7 @@ public class Cliente extends Thread {
     public void run() {
         try {
             // Conexión al servidor
-            Socket socket = new Socket("10.200.116.249", 5559);
+            Socket socket = new Socket("localhost", 5559);
             System.out.println("[" + nombre + "] Conectado al servidor en puerto local: " + socket.getLocalPort());
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
@@ -44,15 +44,31 @@ public class Cliente extends Thread {
 
             // 4) Bucle de juego basado en turnos
             while (!fin) {
-                String mensaje = in.readUTF();
-                if (mensaje.equals("Es tu turno")) {
-                    System.out.println("[" + nombre + "] Es mi turno. Respondiendo...");
-                    boolean respuestaCorrecta = Math.random() > 0.5; // Simulación de respuesta
-                    out.writeBoolean(respuestaCorrecta);
-                    out.flush();
+                try {
+                    String mensaje = in.readUTF(); // Esperar mensaje del servidor
+
+                    if (mensaje.equals("Es tu turno")) {
+                        System.out.println("[" + nombre + "] Es mi turno. Respondiendo...");
+                        boolean respuestaCorrecta = Math.random() > 0.5; // Simulación de respuesta
+                        out.writeBoolean(respuestaCorrecta);
+                        out.flush();
+                    } else if (mensaje.equals("ACTUALIZAR")) {
+                        System.out.println("[" + nombre + "] Recibiendo actualización del juego...");
+                        int estado = in.readInt(); // Ejemplo de actualización recibida
+                        System.out.println("[" + nombre + "] Nuevo estado: " + estado);
+                    } else if (mensaje.equals("FIN DEL JUEGO")) {
+                        System.out.println("[" + nombre + "] El juego ha terminado.");
+                        fin = true;
+                    }
+                } catch (Exception e) {
+                    System.out.println("[" + nombre + "] Error en la comunicación: " + e.getMessage());
+                    break;
                 }
             }
 
+            // Cerrar conexión cuando termine el juego
+            in.close();
+            out.close();
             socket.close();
             System.out.println("[" + nombre + "] Cliente finalizado.");
 
