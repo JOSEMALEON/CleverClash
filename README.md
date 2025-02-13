@@ -61,4 +61,4 @@ Estamos comprometidos a ofrecerte una experiencia divertida y desafiante. ¡Grac
 
 ---
 
-**Desarrollado con ❤️ por JOSEMALEON**
+**Desarrollado con ❤️ por JOSEMALEON, Pablo Piedrola y Jesus Garcia**
