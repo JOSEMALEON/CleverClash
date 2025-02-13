@@ -12,4 +12,12 @@
     <color name="rosa">#FF69B4</color>
     <color name="verde">#32CD32</color>
     <color name="azul">#1E90FF</color>
+    <color name="green">#4CAF50</color> <!-- Verde -->
+    <color name="yellow">#FFEB3B</color> <!-- Amarillo -->
+    <color name="orange">#FF9800</color> <!-- Naranja -->
+    <color name="red">#F44336</color> <!-- Rojo -->
+    <color name="pink">#E91E63</color> <!-- Rosa -->
+    <color name="blue">#2196F3</color> <!-- Azul -->
+    <color name="purple">#9C27B0</color> <!-- Morado -->
+
 </resources>

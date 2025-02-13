@@ -64,10 +64,17 @@
             android:label="Geografía"
             android:parentActivityName=".ActivityRuleta" />
 
+        <activity android:name=".CoronaActivity"/>
+
         <!-- Actividad de registro -->
         <activity android:name=".RegisterActivity" />
 
         <activity android:name=".RuletaActivity" />
+
+        <activity android:name=".VisorPreguntasActivity" />
+
+        <activity android:name=".PreguntasActivity"/>
+
 
 
     </application>

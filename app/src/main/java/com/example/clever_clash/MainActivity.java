@@ -65,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Nueva partida iniciada", Toast.LENGTH_SHORT).show()
         );
 
-        dataButton.setOnClickListener(v ->
-                Toast.makeText(MainActivity.this, "Función de datos no implementada", Toast.LENGTH_SHORT).show()
-        );
+        dataButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, VisorPreguntasActivity.class);
+            startActivity(intent);
+        });
+
 
         btnIrARuleta.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RuletaActivity.class);

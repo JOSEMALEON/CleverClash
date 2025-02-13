@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <Button
+        android:id="@+id/btnCiencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ciencia (Verde)"/>
+
+    <Button
+        android:id="@+id/btnHistoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Historia (Amarillo)"/>
+
+    <Button
+        android:id="@+id/btnDeporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deporte (Naranja)"/>
+
+    <Button
+        android:id="@+id/btnArte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Arte (Rojo)"/>
+
+    <Button
+        android:id="@+id/btnEntretenimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Entretenimiento (Rosa)"/>
+
+    <Button
+        android:id="@+id/btnGeografia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Geografía (Azul)"/>
+
+    <Button
+        android:id="@+id/btnCorona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Corona a elección (Morado)"/>
+
+
+</LinearLayout>
